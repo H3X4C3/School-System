@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>STATIC_CONCPP;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Documents\Visual Studio 2022\mysql-connector-c++-8.0.29-winx64\include\jdbc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Documents\Visual Studio 2022\mysql-connector-c++-8.0.29-winx64\include\jdbc;C:\Users\Administrator\Documents\Visual Studio 2022\C++ Projects\school system\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,16 +130,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="admin.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="student.cpp" />
-    <ClCompile Include="teacher.cpp" />
+    <ClCompile Include="src\admin.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\student.cpp" />
+    <ClCompile Include="src\teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="admin.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="student.h" />
-    <ClInclude Include="teacher.h" />
+    <ClInclude Include="include\admin.h" />
+    <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\student.h" />
+    <ClInclude Include="include\teacher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".env" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

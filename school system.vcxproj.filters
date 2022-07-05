@@ -13,33 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{43aab2a6-4a90-4e64-a410-fd9d4a991987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{fd10327e-c979-4afb-ad5b-cedd60fbe1c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\teacher.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="student.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\admin.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="teacher.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="admin.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\student.cpp">
+      <Filter>Source Files\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\teacher.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="student.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\admin.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="teacher.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\main.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="admin.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\student.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".env" />
   </ItemGroup>
 </Project>
