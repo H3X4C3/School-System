@@ -137,6 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\admin.h" />
+    <ClInclude Include="include\db\db_read.h" />
+    <ClInclude Include="include\db\db_write.h" />
     <ClInclude Include="include\main.h" />
     <ClInclude Include="include\student.h" />
     <ClInclude Include="include\teacher.h" />

@@ -30,11 +30,11 @@ const string server = "localhost";
 const string username = "root";
 const string password = read_pass();
 
+sql::Driver* driver;
+sql::Connection* con;
+
 // CONNECT TO DATABASE
 void connect_db() {
-	sql::Driver* driver;
-	sql::Connection* con;
-
 	try {
 		driver = get_driver_instance();
 		con = driver->connect(server, username, password);

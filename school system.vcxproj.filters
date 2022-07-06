@@ -47,6 +47,12 @@
     <ClInclude Include="include\student.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="include\db\db_write.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\db\db_read.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".env" />

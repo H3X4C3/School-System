@@ -4,8 +4,9 @@
 #include <ctime>
 using namespace std;
 
-Admin::Admin(string name, int age, string email) {
-	this->name = name;
+Admin::Admin(string first_name, string surname, int age, string email) {
+	this->first_name = first_name;
+	this->surname = surname;
 	this->age = age;
 	this->email = email;
 
@@ -13,8 +14,12 @@ Admin::Admin(string name, int age, string email) {
 }
 
 // GETTERS
-string Admin::get_name() {
-	return this->name;
+string Admin::get_first_name() {
+	return this->first_name;
+}
+
+string Admin::get_surname() {
+	return this->surname;
 }
 
 string Admin::get_email() {
@@ -38,8 +43,12 @@ void Admin::set_email(string email) {
 	this->email = email;
 }
 
-void Admin::set_name(string name) {
-	this->name = name;
+void Admin::set_first_name(string first_name) {
+	this->first_name = first_name;
+}
+
+void Admin::set_surname(string surname) {
+	this->surname = surname;
 }
 
 void Admin::new_id() {
