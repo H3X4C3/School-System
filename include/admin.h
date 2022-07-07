@@ -27,5 +27,5 @@ public:
 	void set_age(int age);
 	void new_id();
 
-	Teacher get_teacher(string name);
+
 };

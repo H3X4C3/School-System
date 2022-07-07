@@ -21,10 +21,20 @@ void print_table(string table) {
 	result = statement->executeQuery();
 
 	transform(table.begin(), table.end(), table.begin(), toupper);
-	cout << "From " << table << ":" << endl;
+	cout << "Entries from " << table << ":" << endl;
+	transform(table.begin(), table.end(), table.begin(), tolower);
 
-	while (result->next()) {
-		printf("id: %d   first_name: %s   surname: %s   age: %d   email: %s\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), result->getInt(4), result->getString(5).c_str());
+	if (table == "student") {
+		while (result->next()) {
+			printf("id: %d   first_name: %s   surname: %s   DOB: %s   gpa: %.1f   level: %d\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), 
+				result->getString(4).c_str(), result->getDouble(5), result->getInt(6));
+		}
+	}
+	else {
+		while (result->next()) {
+			printf("id: %d   first_name: %s   surname: %s   dob: %s   email: %s\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), 
+				result->getString(4).c_str(), result->getString(5).c_str());
+		}
 	}
 
 	delete result;
@@ -34,7 +44,7 @@ void print_table(string table) {
 }
 
 // PRINT ADMIN FUNCTIONS
-void print_admin(int id) {
+void print_admin(int id) { // ================================= PRINT ADMIN INT
 	sql::PreparedStatement* statement;
 	sql::ResultSet* result;
 	string str_id = to_string(id);
@@ -45,7 +55,8 @@ void print_admin(int id) {
 	cout << "From ADMINISTRATOR:" << endl;
 	
 	while (result->next()) {
-		printf("id: %d   first_name: %s   surname: %s   age: %s   email: %s\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), result->getString(4).c_str(), result->getString(5).c_str());
+		printf("id: %d   first_name: %s   surname: %s   age: %s   email: %s\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), 
+			result->getString(4).c_str(), result->getString(5).c_str());
 	}
 
 	delete result;
@@ -54,13 +65,14 @@ void print_admin(int id) {
 	system("pause");
 }
 
-void print_admin(string name) {
+void print_admin(string str) { // ================================= PRINT ADMIN STRING
 	sql::PreparedStatement* statement;
 	sql::ResultSet* result;
-	
+
 	// must put in try-catch clause
 	try {
-		statement = con->prepareStatement("SELECT * FROM administrator WHERE (first_name=" + name + ") OR (surname=" + name + ");");
+		// put escape chars otherwise mysql won't be able to read strings
+		statement = con->prepareStatement("SELECT * FROM administrator WHERE (first_name=\'" + str + "\') OR (surname=\'" + str + "\');");
 	}
 	catch (sql::SQLException e) {
 		cout << "Error grabbing names from DB: " << e.what() << endl;
@@ -69,10 +81,33 @@ void print_admin(string name) {
 	}
 	result = statement->executeQuery();
 
-	printf("Names with \'%s\' in ADMINISTRATOR:\n", name.c_str());
+	printf("Names with \'%s\' in ADMINISTRATOR:\n", str.c_str());
 
 	while (result->next()) {
-		printf("id: %d   first_name: %s   surname: %s   age: %s   email: %s\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), result->getString(4).c_str(), result->getString(5).c_str());
+		printf("id: %d   first_name: %s   surname: %s   age: %s   email: %s\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(), 
+			result->getString(4).c_str(), result->getString(5).c_str());
+	}
+
+	delete result;
+	delete statement;
+	delete con;
+	system("pause");
+}
+
+// STUDENT FUNCTIONS
+void print_student(int id) {
+	sql::PreparedStatement* statement;
+	sql::ResultSet* result;
+	string str_id = to_string(id);
+
+	statement = con->prepareStatement("SELECT * FROM student WHERE (id=" + str_id + ");");
+	result = statement->executeQuery();
+
+	printf("Entries with ID \'%d\' in STUDENT:\n", id);
+
+	while (result->next()) {
+		printf("id: %d   first_name: %s   surname: %s   DOB: %s   gpa: %.1f   level: %d\n", result->getInt(1), result->getString(2).c_str(), 
+			result->getString(3).c_str(), result->getString(4).c_str(), result->getDouble(5), result->getInt(6));
 	}
 
 	delete result;

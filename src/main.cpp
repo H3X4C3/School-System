@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 	connect_db();
-	print_admin("john");
+	print_table("administrator");
 
 	return 0;
 }

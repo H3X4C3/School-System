@@ -24,4 +24,6 @@ public:
 	void set_email(string email);
 	void set_age(int age);
 	void new_id();
+
+
 };
