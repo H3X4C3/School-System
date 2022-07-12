@@ -11,6 +11,9 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 
+sql::Driver* driver;
+sql::Connection* con;
+
 // READ PASSWORD FROM FILE
 string read_pass() {
 	ifstream file;
@@ -29,9 +32,6 @@ string read_pass() {
 const string server = "localhost";
 const string username = "root";
 const string password = read_pass();
-
-sql::Driver* driver;
-sql::Connection* con;
 
 // CONNECT TO DATABASE
 void connect_db() {

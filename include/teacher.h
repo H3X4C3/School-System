@@ -1,4 +1,6 @@
 #pragma once
+#include "student.h"
+
 #include <string>
 using namespace std;
 
@@ -25,5 +27,9 @@ public:
 	void set_age(int age);
 	void new_id();
 
-
+	Student get_student_obj(int id);
+	string get_student_name(Student student);
+	double get_student_gpa(Student student);
+	string get_student_email(Student student);
+	int get_student_level(Student student);
 };

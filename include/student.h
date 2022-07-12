@@ -9,7 +9,7 @@ private:
 	string email;
 	int age;
 	int student_id;
-	int gpa;
+	double gpa;
 
 public:
 	Student(string first_name, string surname, int age, string email);
@@ -19,7 +19,7 @@ public:
 	string get_email();
 	int get_id();
 	int get_age();
-	int get_gpa();
+	double get_gpa();
 
 	void set_first_name(string first_name);
 	void set_surname(string surname);

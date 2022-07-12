@@ -36,7 +36,7 @@ int Student::get_id() {
 	return this->student_id;
 }
 
-int Student::get_gpa() {
+double Student::get_gpa() {
 	return this->gpa;
 }
 

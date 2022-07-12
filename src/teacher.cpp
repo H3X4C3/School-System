@@ -1,4 +1,5 @@
 #include "teacher.h"
+//#include "db/db_read.h"
 
 #include <string>
 #include <ctime>
@@ -54,4 +55,9 @@ void Teacher::set_first_name(string first_name) {
 
 void Teacher::set_surname(string surname) {
 	this->surname = surname;
+}
+
+// OTHER FUNCTIONS
+Student Teacher::get_student_obj(int id) {
+
 }
