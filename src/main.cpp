@@ -8,12 +8,9 @@ void cleanup();
 
 int main() {
 	connect_db();
-	string name = get_student_name(213);
-	string dob = get_student_dob(213);
-	cleanup();
-
-	cout << name << endl;
-	cout << dob << endl;
+	print_entry(213, "student");
+	print_entry(433, "administrator");
+	print_entry(746, "teacher");
 
 	return 0;
 }
