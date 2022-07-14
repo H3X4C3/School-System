@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="src\admin.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\person.cpp" />
     <ClCompile Include="src\student.cpp" />
     <ClCompile Include="src\teacher.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="include\db\db_read.h" />
     <ClInclude Include="include\db\db_write.h" />
     <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\person.h" />
     <ClInclude Include="include\student.h" />
     <ClInclude Include="include\teacher.h" />
   </ItemGroup>

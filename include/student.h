@@ -1,8 +1,10 @@
 #pragma once
+#include "person.h"
+
 #include <string>
 using namespace std;
 
-class Student {
+class Student: public Person {
 private:
 	string first_name;
 	string surname;
@@ -12,18 +14,10 @@ private:
 	double gpa;
 
 public:
-	Student(string first_name, string surname, int age, string email);
+	Student(string first_name, string surname, int age, double gpa);
 
-	string get_first_name();
-	string get_surname();
-	string get_email();
 	int get_id();
-	int get_age();
 	double get_gpa();
 
-	void set_first_name(string first_name);
-	void set_surname(string surname);
-	void set_age(int age);
 	void new_id();
-	void set_email(string email);
 };
