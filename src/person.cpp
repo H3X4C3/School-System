@@ -1,13 +1,16 @@
 #include "person.h"
 
 #include <string>
-#include <iostream>
+#include <ctime>
 using namespace std;
 
-Person::Person(string first_name, string surname, int age) {
+Person::Person(string first_name, string surname, string dob, string email) {
 	this->first_name = first_name;
 	this->surname = surname;
-	this->age = age;
+	this->dob = dob;
+	this->email = email;
+
+	new_id();
 }
 
 // GETTERS
@@ -19,8 +22,16 @@ string Person::get_surname() {
 	return this->surname;
 }
 
-int Person::get_age() {
-	return this->age;
+string Person::get_dob() {
+	return this->dob;
+}
+
+int Person::get_id() {
+	return this->id;
+}
+
+string Person::get_email() {
+	return this->email;
 }
 
 // SETTERS
@@ -32,6 +43,15 @@ void Person::set_surname(string name) {
 	this->surname = name;
 }
 
-void Person::set_age(int age) {
-	this->age = age;
+void Person::set_email(string email) {
+	this->email = email;
+}
+
+void Person::set_dob(string dob) {
+	this->dob = dob;
+}
+
+void Person::new_id() {
+	srand((unsigned)time(0));
+	this->id = 1 + (rand() % 999);
 }

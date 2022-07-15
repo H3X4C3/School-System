@@ -10,17 +10,11 @@ private:
 	string first_name;
 	string surname;
 	string email;
-	int age;
-	int teacher_id;
+	string dob;
+	int id = 0;
 
 public:
-	Teacher(string first_name, string surname, int age, string email);
-
-	string get_email();
-	int get_id();
-
-	void set_email(string email);
-	void new_id();
+	Teacher(string first_name, string surname, string dob, string email);
 
 	Student get_student_obj(int id);
 	string get_student_name(Student student);

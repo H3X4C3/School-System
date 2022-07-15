@@ -9,15 +9,14 @@ private:
 	string first_name;
 	string surname;
 	string email;
-	int age;
-	int student_id;
-	double gpa;
+	string dob;
+	double gpa = 0.0;
+	int level = 1;
+	int id = 0;
 
 public:
-	Student(string first_name, string surname, int age, double gpa);
+	Student(string first_name, string surname, string dob, double gpa, int level);
 
-	int get_id();
 	double get_gpa();
-
-	void new_id();
+	int get_level();
 };

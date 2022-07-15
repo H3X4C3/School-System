@@ -19,6 +19,7 @@ string read_pass() {
 	ifstream file;
 	string pass = "";
 
+	// for security purposes I'm opening a local .env file to read database password
 	file.open("C:\\Users\\Administrator\\Documents\\Visual Studio 2022\\C++ Projects\\school system\\.env", ios::in);
 
 	if (file.is_open()) {
@@ -31,7 +32,7 @@ string read_pass() {
 
 const string server = "localhost";
 const string username = "root";
-const string password = read_pass();
+const string password = read_pass(); // read password from .env and assign it to string
 
 // CONNECT TO DATABASE
 void connect_db() {

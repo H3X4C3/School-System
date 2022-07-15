@@ -24,7 +24,7 @@ void print_table(string table) {
 
 	try {
 		if (table == "student") {
-			while (result->next()) {
+			while (result->next()) { // iterate through table in db
 				printf("id: %d   first_name: %s   surname: %s   DOB: %s   gpa: %.1f   level: %d\n", result->getInt(1), result->getString(2).c_str(), result->getString(3).c_str(),
 					result->getString(4).c_str(), result->getDouble(5), result->getInt(6));
 			}
@@ -36,7 +36,7 @@ void print_table(string table) {
 			}
 		}
 	}
-	catch (sql::SQLException e) {
+	catch (sql::SQLException e) { // throw exceptions
 		cout << "Error grabbing entries from DB: " << e.what() << endl;
 		system("pause");
 		exit(1);
@@ -45,7 +45,7 @@ void print_table(string table) {
 
 // PRINT ROW(S)
 void print_row(int id, string table) {
-	string str_id = to_string(id);
+	string str_id = to_string(id); // convert int to string since c++ will complain when passing it through prepareStatement()
 
 	statement = con->prepareStatement("SELECT * FROM " + table + " WHERE (id=" + str_id + ");");
 	result = statement->executeQuery();
@@ -101,7 +101,7 @@ void print_row(string val, string column, string table) {
 }
 
 // GENERAL FUNCTIONS
-template <typename numbers>
+template <typename numbers> // using template so I don't have to make ton of methods to return numerical vars
 numbers get_entry(int id, string table, string column) {
 	string str_id = to_string(id);
 	numbers output;
@@ -134,13 +134,13 @@ string get_entry(int id, string table, string column1, string column2 = "") {
 	string str_id = to_string(id);
 	string output;
 
-	if (!(column2.empty())) {
+	if (!(column2.empty())) { // check if column2 parameter is not empty
 		statement = con->prepareStatement("SELECT " + column1 + ", " + column2 + " FROM " + table + " WHERE (id=" + str_id + ");");
 	}
 	else statement = con->prepareStatement("SELECT " + column1 + " FROM " + table + " WHERE (id=" + str_id + ");");
 	result = statement->executeQuery();
 
-	transform(column2.begin(), column2.end(), column2.begin(), tolower);
+	transform(column2.begin(), column2.end(), column2.begin(), tolower); // put column2 to lowercase since c++ is case sensitive when comparing strings
 
 	try {
 		if (column2 == "surname") {

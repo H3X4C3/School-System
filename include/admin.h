@@ -10,15 +10,9 @@ private:
 	string first_name;
 	string surname;
 	string email;
-	int age;
-	int admin_id;
+	string dob;
+	int id = 0;
 
 public:
-	Admin(string first_name, string surname, int age, string email);
-
-	string get_email();
-	int get_id();
-
-	void set_email(string email);
-	void new_id();
+	Admin(string first_name, string surname, string dob, string email);
 };
