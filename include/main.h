@@ -11,6 +11,9 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 
+#define PRINTLN(x) cout<<x<<endl;
+#define PRINT(x) cout<<x;
+
 sql::Driver* driver;
 sql::Connection* con;
 
@@ -47,4 +50,27 @@ void connect_db() {
 	}
 
 	con->setSchema("school_system");
+}
+
+// MENU FUNCTIONS
+void print_menu() {
+	PRINTLN("\t\tSchool Management System\n");
+	PRINTLN("1. Login\n2. Register\n0. Exit\n");
+	PRINT("Choice -> ");
+}
+
+void login_menu() {
+	PRINTLN("\t\tSchool Management System\nLogin Menu\n");
+	PRINTLN("1. Administrator\n2. Teacher\n0. Back\n");
+	PRINT("Choice -> ");
+}
+
+void admin_panel() {
+	PRINTLN("\t\tAdmin Panel\n");
+	PRINTLN("1. Add\n2. Remove\n3. Update\n");
+	PRINT("Choice -> ");
+}
+
+void teacher_panel() {
+
 }

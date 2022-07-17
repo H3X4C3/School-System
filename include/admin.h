@@ -15,4 +15,12 @@ private:
 
 public:
 	Admin(string first_name, string surname, string dob, string email);
+
+	void print_admins();
+	void print_teachers();
+	void print_students();
+
+	Admin get_admin(int id);
+	Teacher get_teacher(int id);
+	Student get_student(int id);
 };

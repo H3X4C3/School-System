@@ -8,7 +8,6 @@ class Student: public Person {
 private:
 	string first_name;
 	string surname;
-	string email;
 	string dob;
 	double gpa = 0.0;
 	int level = 1;

@@ -13,6 +13,14 @@ Person::Person(string first_name, string surname, string dob, string email) {
 	new_id();
 }
 
+Person::Person(string first_name, string surname, string dob) {
+	this->first_name = first_name;
+	this->surname = surname;
+	this->dob = dob;
+
+	new_id();
+}
+
 // GETTERS
 string Person::get_first_name() {
 	return this->first_name;

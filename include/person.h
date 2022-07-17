@@ -12,6 +12,7 @@ private:
 
 public:
 	Person(string first_name, string surname, string dob, string email);
+	Person(string first_name, string surname, string dob);
 
 	string get_first_name();
 	string get_surname();

@@ -101,10 +101,10 @@ void print_row(string val, string column, string table) {
 }
 
 // GENERAL FUNCTIONS
-template <typename numbers> // using template so I don't have to make ton of methods to return numerical vars
-numbers get_entry(int id, string table, string column) {
+template <typename T> // using template so I don't have to make ton of methods to return numerical vars
+T get_entry(int id, string table, string column) {
 	string str_id = to_string(id);
-	numbers output;
+	T output;
 
 	statement = con->prepareStatement("SELECT " + column + " FROM " + table + " WHERE (id=" + str_id + ");");
 	result = statement->executeQuery();
