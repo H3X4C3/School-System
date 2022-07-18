@@ -33,6 +33,7 @@ string read_pass() {
 	return pass;
 }
 
+// Can be changed depending on SQL server credentials and domain location
 const string server = "localhost";
 const string username = "root";
 const string password = read_pass(); // read password from .env and assign it to string
@@ -60,7 +61,13 @@ void print_menu() {
 }
 
 void login_menu() {
-	PRINTLN("\t\tSchool Management System\nLogin Menu\n");
+	PRINTLN("\t\tSchool Management System\n\t\tLogin\n");
+	PRINTLN("1. Administrator\n2. Teacher\n0. Back\n");
+	PRINT("Choice -> ");
+}
+
+void register_menu() {
+	PRINTLN("\t\tSchool Management System\n\t\tRegister Account\n");
 	PRINTLN("1. Administrator\n2. Teacher\n0. Back\n");
 	PRINT("Choice -> ");
 }

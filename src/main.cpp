@@ -2,6 +2,7 @@
 #include "person.h"
 #include "admin.h"
 
+#include <fstream>
 #include <string>
 #include <Windows.h>
 #include <iostream>
@@ -10,10 +11,15 @@
 using namespace std;
 
 #define CLEAR system("cls");
+#define WAIT Sleep(2000);
 
 void cleanup();
 void login();
-bool check_account(ifstream stream);
+void register_user();
+void create_acc(string role, string& username, string& password);
+
+bool check_password(string role, string& username, string& password);
+bool has_account(string role, string& username);
 
 struct INPUTS {
 	bool stop = false;
@@ -21,7 +27,11 @@ struct INPUTS {
 	string username, password;
 } input;
 
-// MAIN FUNCTION
+// This can be changed by the programmer depending on what directory they wish to save
+// account files on
+const string dir = "C:\\Users\\Administrator\\Documents\\Visual Studio 2022\\C++ Projects\\school system\\data\\users";
+
+// MAIN FUNCTION ==============================================================================================
 int main() {
 	connect_db();
 
@@ -33,15 +43,21 @@ int main() {
 		switch (choice_int) {
 		case 1:
 			CLEAR;
+			login();
 			break;
 		case 2:
-
+			CLEAR;
+			register_user();
 			break;
-		case 3:
-
+		case 0:
+			CLEAR;
+			input.stop = true;
+			PRINTLN("Goodbye!");
+			WAIT;
 			break;
 		default:
-
+			CLEAR;
+			PRINTLN("Goodbye!");
 			break;
 		}
 	}
@@ -50,11 +66,46 @@ int main() {
 	return 0;
 }
 
-// OTHER FUNCTIONS
+// OTHER FUNCTIONS =============================================================================================
 void cleanup() {
 	delete result;
 	delete statement;
 	delete con;
+}
+
+bool check_password(string role, string& username, string& password) { // check passwords
+	string pw_check;
+	ifstream reader(dir + "\\" + role + "\\" + username + ".txt");
+	
+	while (getline(reader, pw_check)) {
+		if (pw_check == password) {
+			reader.close();
+			return true;
+		}
+	}
+
+	reader.close();
+	return false;
+}
+
+bool has_account(string role, string& username) { // check if an account already exists
+	string user_check;
+	ifstream file;
+	file.open(dir + "\\" + role + "\\" + username + ".txt");
+
+	if (!file) {
+		file.close();
+		return false;
+	}
+
+	file.close();
+	return true;
+}
+
+void create_acc(string role, string& username, string& password) {
+	ofstream file(dir + "\\" + role + "\\" + username + ".txt");
+	file << username << endl << password << endl;
+	file.close();
 }
 
 void login() {
@@ -65,23 +116,125 @@ void login() {
 	switch (choice_int) {
 	case 1:
 		CLEAR;
+		PRINTLN("\t\tLogin\n");
 		PRINT("Username: ");
 		getline(cin, input.username);
 		PRINT("Password: ");
 		getline(cin, input.password);
 
+		if (!(check_password("admins", input.username, input.password) == true)) {
+			PRINTLN("\nUsername or password is incorrect. Please try again.");
+			WAIT;
+			CLEAR;
+			break;
+		}
 
+		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
+		WAIT;
+		CLEAR;
 		break;
 	case 2:
+		CLEAR;
+		PRINTLN("\t\tLogin\n");
+		PRINT("Username: ");
+		getline(cin, input.username);
+		PRINT("Password: ");
+		getline(cin, input.password);
 
+		if (!(check_password("teachers", input.username, input.password) == true)) {
+			PRINTLN("\nUsername or password is incorrect. Please try again.");
+			WAIT;
+			CLEAR
+			break;
+		}
+
+		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
+		WAIT;
+		CLEAR;
 		break;
 	case 0:
+		CLEAR;
 		break;
 	default:
 		CLEAR;
 		PRINT("Invalid choice, please try again");
-		Sleep(2000);
+		WAIT;
 		CLEAR;
+		break;
+	}
+}
+
+void register_user() {
+	register_menu();
+	getline(cin, input.choice);
+	int choice_int = stoi(input.choice);
+
+	string confirmation;
+
+	switch (choice_int) {
+	case 1:
+		CLEAR;
+		PRINTLN("\t\tRegister Account\n");
+		PRINT("Username: ");
+		getline(cin, input.username);
+		PRINT("Password: ");
+		getline(cin, input.password);
+		PRINT("Confirm Password: ");
+		getline(cin, confirmation);
+
+		if (has_account("admins", input.username)) {
+			PRINTLN("\nThat username already exists, please use a different one.");
+			WAIT;
+			CLEAR;
+			break;
+		}
+		if (confirmation == input.password) {
+			create_acc("admins", input.username, input.password);
+			PRINTLN("\nAccount successfully created. An administrator will have to approve your account,\nwhich may take some time.");
+			WAIT;
+			CLEAR;
+			break;
+		}
+
+		PRINTLN("\nPassword confirmation failed. Please try again.");
+		WAIT;
+		CLEAR;
+		break;
+	case 2:
+		CLEAR;
+		PRINTLN("\t\tRegister Account\n");
+		PRINT("Username: ");
+		getline(cin, input.username);
+		PRINT("Password: ");
+		getline(cin, input.password);
+		PRINT("Confirm Password: ");
+		getline(cin, confirmation);
+
+		if (has_account("teachers", input.username)) {
+			PRINTLN("\nThat username already exists, please use a different one.");
+			WAIT;
+			CLEAR;
+			break;
+		}
+		if (confirmation == input.password) {
+			create_acc("teachers", input.username, input.password);
+			PRINTLN("\nAccount successfully created. An administrator will have to approve your account,\nwhich may take some time.");
+			WAIT;
+			CLEAR;
+			break;
+		}
+
+		PRINTLN("\nPassword confirmation failed. Please try again.");
+		WAIT;
+		CLEAR;
+		break;
+	case 0:
+		CLEAR;
+		break;
+	default:
+		CLEAR;
+		PRINT("Invalid choice, please try again");
+		WAIT;
 		break;
 	}
 }
