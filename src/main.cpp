@@ -102,7 +102,7 @@ bool has_account(string role, string& username) { // check if an account already
 	return true;
 }
 
-void create_acc(string role, string& username, string& password) {
+void create_acc(string role, string& username, string& password) { // create accounts
 	ofstream file(dir + "\\" + role + "\\" + username + ".txt");
 	file << username << endl << password << endl;
 	file.close();
@@ -122,7 +122,7 @@ void login() {
 		PRINT("Password: ");
 		getline(cin, input.password);
 
-		if (!(check_password("admins", input.username, input.password) == true)) {
+		if (!(check_password("admins", input.username, input.password) == true)) { // check if passwords match
 			PRINTLN("\nUsername or password is incorrect. Please try again.");
 			WAIT;
 			CLEAR;
@@ -169,7 +169,7 @@ void register_user() {
 	getline(cin, input.choice);
 	int choice_int = stoi(input.choice);
 
-	string confirmation;
+	string confirmation; // stores the input of 'Confirm Password' field
 
 	switch (choice_int) {
 	case 1:
@@ -182,13 +182,13 @@ void register_user() {
 		PRINT("Confirm Password: ");
 		getline(cin, confirmation);
 
-		if (has_account("admins", input.username)) {
+		if (has_account("admins", input.username)) { // checks the usernames if they are already taken
 			PRINTLN("\nThat username already exists, please use a different one.");
 			WAIT;
 			CLEAR;
 			break;
 		}
-		if (confirmation == input.password) {
+		if (confirmation == input.password) { // compare the two entered passwords
 			create_acc("admins", input.username, input.password);
 			PRINTLN("\nAccount successfully created. An administrator will have to approve your account,\nwhich may take some time.");
 			WAIT;
