@@ -14,12 +14,16 @@ using namespace std;
 #define WAIT Sleep(2000);
 
 void cleanup();
-void login();
-void register_user();
 void create_acc(string role, string& username, string& password);
 
+int login();
+void register_user();
 bool check_password(string role, string& username, string& password);
 bool has_account(string role, string& username);
+
+void admin_func();
+void admin_ext();
+void teacher_func();
 
 struct INPUTS {
 	bool stop = false;
@@ -36,6 +40,8 @@ int main() {
 	connect_db();
 
 	while (input.stop != true) {
+		int num;
+
 		print_menu();
 		getline(cin, input.choice);
 		int choice_int = stoi(input.choice);
@@ -43,7 +49,16 @@ int main() {
 		switch (choice_int) {
 		case 1:
 			CLEAR;
-			login();
+			num = login();
+			
+			if (num == 1) {
+				CLEAR;
+				teacher_func();
+			}
+			if (num == 2) {
+				admin_func();
+			}
+
 			break;
 		case 2:
 			CLEAR;
@@ -108,7 +123,10 @@ void create_acc(string role, string& username, string& password) { // create acc
 	file.close();
 }
 
-void login() {
+int login() {
+	int user_type; // if user_type = 1: teacher, if user_type = 2: admin
+	const int user_type_max = 2;
+
 	login_menu();
 	getline(cin, input.choice);
 	int choice_int = stoi(input.choice);
@@ -132,7 +150,7 @@ void login() {
 		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
 		WAIT;
 		CLEAR;
-		break;
+		return user_type_max;
 	case 2:
 		CLEAR;
 		PRINTLN("\t\tLogin\n");
@@ -151,7 +169,8 @@ void login() {
 		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
 		WAIT;
 		CLEAR;
-		break;
+		user_type = 1;
+		return user_type;
 	case 0:
 		CLEAR;
 		break;
@@ -162,6 +181,9 @@ void login() {
 		CLEAR;
 		break;
 	}
+	
+	user_type = 0;
+	return user_type;
 }
 
 void register_user() {
@@ -238,3 +260,44 @@ void register_user() {
 		break;
 	}
 }
+
+/*
+void admin_ext() {
+	admin_panel2();
+	getline(cin, input.choice);
+	int choice_int = stoi(input.choice);
+
+	switch (choice_int) {
+	case 1:
+
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 0:
+		break;
+	default:
+		break;
+	}
+}*/
+
+void admin_func() {
+	admin_panel();
+	getline(cin, input.choice);
+	int choice_int = stoi(input.choice);
+
+	switch (choice_int) {
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 0:
+		break;
+	default:
+		break;
+	}
+}
+
