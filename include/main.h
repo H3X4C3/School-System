@@ -1,5 +1,6 @@
 #pragma once
 #include "mysql_connection.h"
+#include "admin.h"
 
 #include <string>
 #include <stdlib.h>
@@ -14,6 +15,7 @@ using namespace std;
 #define PRINTLN(x) cout<<x<<endl;
 #define PRINT(x) cout<<x;
 
+Admin* admin;
 sql::Driver* driver;
 sql::Connection* con;
 
@@ -23,7 +25,7 @@ string read_pass() {
 	string pass = "";
 
 	// for security purposes I'm opening a local .env file to read database password
-	file.open("C:\\Users\\Administrator\\Documents\\Visual Studio 2022\\C++ Projects\\school system\\.env", ios::in);
+	file.open("C:\\Users\\Me\\Documents\\c++ projects\\school system\\.env", ios::in);
 
 	if (file.is_open()) {
 		getline(file, pass);

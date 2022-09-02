@@ -1,6 +1,4 @@
 #include "main.h"
-#include "person.h"
-#include "admin.h"
 
 #include <fstream>
 #include <string>
@@ -29,7 +27,7 @@ struct INPUTS {
 
 // This can be changed by the programmer depending on what directory they wish to save
 // account files on
-const string dir = "C:\\Users\\Administrator\\Documents\\Visual Studio 2022\\C++ Projects\\school system\\data\\users";
+const string dir = "C:\\Users\\Me\\Documents\\c++ projects\\school system\\data\\users";
 
 // MAIN FUNCTION ==============================================================================================
 int main() {
@@ -144,7 +142,7 @@ void login() {
 		if (!(check_password("teachers", input.username, input.password) == true)) {
 			PRINTLN("\nUsername or password is incorrect. Please try again.");
 			WAIT;
-			CLEAR
+			CLEAR;
 			break;
 		}
 
