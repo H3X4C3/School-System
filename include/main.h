@@ -1,6 +1,5 @@
 #pragma once
 #include "mysql_connection.h"
-#include "admin.h"
 
 #include <string>
 #include <stdlib.h>
@@ -15,7 +14,6 @@ using namespace std;
 #define PRINTLN(x) cout<<x<<endl;
 #define PRINT(x) cout<<x;
 
-Admin* admin;
 sql::Driver* driver;
 sql::Connection* con;
 
@@ -63,23 +61,31 @@ void print_menu() {
 }
 
 void login_menu() {
-	PRINTLN("\t\tSchool Management System\n\t\tLogin\n");
+	PRINTLN("\t\tLogin\n");
 	PRINTLN("1. Administrator\n2. Teacher\n0. Back\n");
 	PRINT("Choice -> ");
 }
 
 void register_menu() {
-	PRINTLN("\t\tSchool Management System\n\t\tRegister Account\n");
+	PRINTLN("\t\tRegister Account\n");
 	PRINTLN("1. Administrator\n2. Teacher\n0. Back\n");
 	PRINT("Choice -> ");
 }
 
 void admin_panel() {
 	PRINTLN("\t\tAdmin Panel\n");
-	PRINTLN("1. Add\n2. Remove\n3. Update\n");
+	PRINTLN("1. Add\n2. Remove\n3. Update\n0. Logout\n");
+	PRINT("Choice -> ");
+}
+
+void admin_panel2() {
+	PRINTLN("\t\tAdmin Panel\n");
+	PRINTLN("1. Student\n2. Teacher\n3. Admin\n0. Logout\n");
 	PRINT("Choice -> ");
 }
 
 void teacher_panel() {
-
+	PRINTLN("\t\tTeacher Panel\n");
+	PRINTLN("1. View Student\n2. View Grades\n3. Change Grades\n4. List Students\n0. Logout\n");
+	PRINT("Choice -> ");
 }

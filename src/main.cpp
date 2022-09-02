@@ -12,10 +12,10 @@ using namespace std;
 #define WAIT Sleep(2000);
 
 void cleanup();
-void login();
-void register_user();
 void create_acc(string role, string& username, string& password);
 
+void login();
+void register_user();
 bool check_password(string role, string& username, string& password);
 bool has_account(string role, string& username);
 
@@ -41,7 +41,6 @@ int main() {
 		switch (choice_int) {
 		case 1:
 			CLEAR;
-			login();
 			break;
 		case 2:
 			CLEAR;
@@ -107,6 +106,9 @@ void create_acc(string role, string& username, string& password) { // create acc
 }
 
 void login() {
+	int user_type; // if user_type = 1: teacher, if user_type = 2: admin
+	const int user_type_max = 2;
+
 	login_menu();
 	getline(cin, input.choice);
 	int choice_int = stoi(input.choice);
@@ -149,6 +151,7 @@ void login() {
 		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
 		WAIT;
 		CLEAR;
+		user_type = 1;
 		break;
 	case 0:
 		CLEAR;
