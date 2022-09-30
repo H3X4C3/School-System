@@ -3,6 +3,7 @@
 #include "person.h"
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class Admin: public Person {
@@ -13,6 +14,8 @@ private:
 	string dob;
 	int id = 0;
 
+	vector<Admin> admin_list;
+
 public:
 	Admin(string first_name, string surname, string dob, string email);
 
@@ -21,6 +24,7 @@ public:
 	void print_students();
 
 	Admin get_admin(int id);
+	Admin get_admin_list();
 	Teacher get_teacher(int id);
 	Student get_student(int id);
 };

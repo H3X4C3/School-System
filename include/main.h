@@ -23,7 +23,7 @@ string read_pass() {
 	string pass = "";
 
 	// for security purposes I'm opening a local .env file to read database password
-	file.open("C:\\Users\\Me\\Documents\\c++ projects\\school system\\.env", ios::in);
+	file.open(".\\.env", ios::in);
 
 	if (file.is_open()) {
 		getline(file, pass);

@@ -14,8 +14,8 @@ using namespace std;
 void cleanup();
 void create_acc(string role, string& username, string& password);
 
-void login();
-void register_user();
+int login();
+bool register_user();
 bool check_password(string role, string& username, string& password);
 bool has_account(string role, string& username);
 
@@ -23,11 +23,11 @@ struct INPUTS {
 	bool stop = false;
 	string choice;
 	string username, password;
+	string first_name, surname, dob, email;
 } input;
 
-// This can be changed by the programmer depending on what directory they wish to save
-// account files on
-const string dir = "C:\\Users\\Me\\Documents\\c++ projects\\school system\\data\\users";
+// path to users folder
+const string dir = ".\\data\\users";
 
 // MAIN FUNCTION ==============================================================================================
 int main() {
@@ -41,6 +41,7 @@ int main() {
 		switch (choice_int) {
 		case 1:
 			CLEAR;
+			login();
 			break;
 		case 2:
 			CLEAR;
@@ -99,13 +100,13 @@ bool has_account(string role, string& username) { // check if an account already
 	return true;
 }
 
-void create_acc(string role, string& username, string& password) { // create accounts
+void create_acc(string role, string &username, string &password) { // create accounts
 	ofstream file(dir + "\\" + role + "\\" + username + ".txt");
 	file << username << endl << password << endl;
 	file.close();
 }
 
-void login() {
+int login() {
 	int user_type; // if user_type = 1: teacher, if user_type = 2: admin
 	const int user_type_max = 2;
 
@@ -128,11 +129,11 @@ void login() {
 			CLEAR;
 			break;
 		}
-
+		;
 		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
 		WAIT;
 		CLEAR;
-		break;
+		return user_type_max;
 	case 2:
 		CLEAR;
 		PRINTLN("\t\tLogin\n");
@@ -148,11 +149,11 @@ void login() {
 			break;
 		}
 
+		user_type = 1;
 		PRINTLN("\nSuccessfully logged in as " + input.username + "!");
 		WAIT;
 		CLEAR;
-		user_type = 1;
-		break;
+		return user_type;
 	case 0:
 		CLEAR;
 		break;
@@ -163,9 +164,11 @@ void login() {
 		CLEAR;
 		break;
 	}
+
+	return user_type = 0;
 }
 
-void register_user() {
+bool register_user() {
 	register_menu();
 	getline(cin, input.choice);
 	int choice_int = stoi(input.choice);
@@ -176,6 +179,10 @@ void register_user() {
 	case 1:
 		CLEAR;
 		PRINTLN("\t\tRegister Account\n");
+		PRINT("First Name: ");
+		getline(cin, input.first_name);
+		PRINT("Last Name: ");
+		getline(cin, input.surname);
 		PRINT("Username: ");
 		getline(cin, input.username);
 		PRINT("Password: ");
@@ -194,7 +201,7 @@ void register_user() {
 			PRINTLN("\nAccount successfully created. An administrator will have to approve your account,\nwhich may take some time.");
 			WAIT;
 			CLEAR;
-			break;
+			return true;
 		}
 
 		PRINTLN("\nPassword confirmation failed. Please try again.");
@@ -222,7 +229,7 @@ void register_user() {
 			PRINTLN("\nAccount successfully created. An administrator will have to approve your account,\nwhich may take some time.");
 			WAIT;
 			CLEAR;
-			break;
+			return true;
 		}
 
 		PRINTLN("\nPassword confirmation failed. Please try again.");
@@ -238,4 +245,6 @@ void register_user() {
 		WAIT;
 		break;
 	}
+
+	return false;
 }
