@@ -18,4 +18,6 @@ public:
 
 	double get_gpa();
 	int get_level();
+	int get_id();
+	string get_dob();
 };

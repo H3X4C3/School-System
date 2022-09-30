@@ -16,14 +16,27 @@ using namespace std;
 void insert_to_table(Person* person, string table) {
 	transform(table.begin(), table.end(), table.begin(), tolower);
 
-	if (!(table == "student")) {
+	if (table == "administrator") {
 		statement = con->prepareStatement("INSERT INTO " + table + "(id, first_name, surname, DOB, email) VALUES(?, ?, ?, ?, ?);");
 		// Set values to db
-		statement->setInt(1, person->get_id());
+		statement->setInt(1, static_cast<Admin*>(person)->get_id());
 		statement->setString(2, person->get_first_name());
 		statement->setString(3, person->get_surname());
-		statement->setString(4, person->get_dob());
-		statement->setString(5, person->get_email());
+		statement->setString(4, static_cast<Admin*>(person)->get_dob());
+		statement->setString(5, static_cast<Admin*>(person)->get_email());
+		statement->execute();
+
+		cout << "Entry inserted to database." << endl;
+		return;
+	}
+	if (table == "teacher") {
+		statement = con->prepareStatement("INSERT INTO " + table + "(id, first_name, surname, DOB, email) VALUES(?, ?, ?, ?, ?);");
+		// Set values to db
+		statement->setInt(1, static_cast<Teacher*>(person)->get_id());
+		statement->setString(2, person->get_first_name());
+		statement->setString(3, person->get_surname());
+		statement->setString(4, static_cast<Teacher*>(person)->get_dob());
+		statement->setString(5, static_cast<Teacher*>(person)->get_email());
 		statement->execute();
 
 		cout << "Entry inserted to database." << endl;
@@ -32,10 +45,10 @@ void insert_to_table(Person* person, string table) {
 
 	statement = con->prepareStatement("INSERT INTO " + table + "(id, first_name, surname, DOB, gpa, level) VALUES(?, ?, ?, ?, ?, ?);");
 	// Set values to db
-	statement->setInt(1, person->get_id());
+	statement->setInt(1, static_cast<Student*>(person)->get_id());
 	statement->setString(2, person->get_first_name());
 	statement->setString(3, person->get_surname());
-	statement->setString(4, person->get_dob());
+	statement->setString(4, static_cast<Student*>(person)->get_dob());
 	statement->setDouble(5, static_cast<Student*>(person)->get_gpa());
 	statement->setInt(6, static_cast<Student*>(person)->get_level());
 	statement->execute();

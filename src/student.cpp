@@ -1,7 +1,7 @@
 #include "student.h"
 using namespace std;
 
-Student::Student(string first_name, string surname, string dob, double gpa, int level): Person(first_name, surname, dob) {
+Student::Student(string first_name, string surname, string dob, double gpa, int level): Person(first_name, surname) {
 	this->gpa = gpa;
 	this->level = level;
 }
