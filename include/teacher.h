@@ -12,7 +12,7 @@ private:
 	string surname;
 	string email;
 	string dob;
-	int id = 0;
+	int teacher_id = 0;
 
 	vector<Teacher> teacher_list;
 	vector<int> id_list;
@@ -30,8 +30,8 @@ public:
 	string get_dob();
 	string get_email();
 	int get_id();
-	int get_student_level(Student student);
-	double get_student_gpa(Student student);
+	int get_student_level(Student& student);
+	double get_student_gpa(Student& student);
 	vector<Teacher> get_teacher_list();
 	Student get_student(int id);
 
@@ -43,5 +43,5 @@ public:
 	int new_id();
 
 	// OTHERS
-	bool add_teacher(Teacher teacher);
+	bool add_teacher(Teacher& teacher);
 };

@@ -1,11 +1,11 @@
+#include "db/db_read.h"
+#include "db/db_write.h"
 #include "main.h"
 
 #include <fstream>
 #include <string>
 #include <Windows.h>
 #include <iostream>
-#include <db/db_read.h>
-#include <db/db_write.h>
 using namespace std;
 
 #define CLEAR system("cls");
@@ -37,6 +37,7 @@ int main() {
 		print_menu();
 		getline(cin, input.choice);
 		int choice_int = stoi(input.choice);
+		/*int test = get_entry(23, "student", "level");*/
 
 		switch (choice_int) {
 		case 1:

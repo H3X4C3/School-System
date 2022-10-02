@@ -11,11 +11,11 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 
-sql::PreparedStatement* statement;
-sql::ResultSet* result;
+extern sql::PreparedStatement* statement;
+extern sql::ResultSet* result;
 
 // PRINT TABLE FROM DATABASE
-void print_table(string table) {
+inline void print_table(string table) {
 	// READ DATA
 	statement = con->prepareStatement("SELECT * FROM " + table);
 	result = statement->executeQuery();
@@ -44,7 +44,7 @@ void print_table(string table) {
 }
 
 // PRINT ROW(S)
-void print_row(int id, string table) {
+inline void print_row(int id, string table) {
 	string str_id = to_string(id); // convert int to string since c++ will complain when passing it through prepareStatement()
 
 	statement = con->prepareStatement("SELECT * FROM " + table + " WHERE (id=" + str_id + ");");
@@ -73,7 +73,7 @@ void print_row(int id, string table) {
 	}
 }
 
-void print_row(string val, string column, string table) {
+inline void print_row(string val, string column, string table) {
 	statement = con->prepareStatement("SELECT * FROM " + table + " WHERE (" + column + "=\'" + val + "\');");
 	result = statement->executeQuery();
 
@@ -102,7 +102,7 @@ void print_row(string val, string column, string table) {
 
 // GENERAL FUNCTIONS
 template <typename T> // using template so I don't have to make ton of methods to return numerical vars
-T get_entry(int id, string table, string column) {
+inline T get_entry(int id, string table, string column) {
 	string str_id = to_string(id);
 	T output;
 
@@ -130,7 +130,7 @@ T get_entry(int id, string table, string column) {
 	return output;
 }
 
-string get_entry(int id, string table, string column1, string column2 = "") {
+inline string get_entry(int id, string table, string column1, string column2 = "") {
 	string str_id = to_string(id);
 	string output;
 

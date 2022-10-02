@@ -1,5 +1,7 @@
 #include "teacher.h"
 #include "person.h"
+#include "db/db_read.h"
+//#include "db/db_write.h"
 
 #include <string>
 #include <vector>
@@ -13,7 +15,7 @@ Teacher::Teacher(string first_name, string surname, string dob, string email) : 
 Teacher::Teacher(string first_name, string surname, string dob, string email, int id) : Person(first_name, surname) {
 	this->dob = dob;
 	this->email = email;
-	this->id = id;
+	this->teacher_id = id;
 }
 
 // GETTERS
@@ -38,7 +40,7 @@ string Teacher::get_email() {
 }
 
 int Teacher::get_id() {
-	return this->id;
+	return this->teacher_id;
 }
 
 vector<Teacher> Teacher::get_teacher_list() {
@@ -54,4 +56,36 @@ Student Teacher::get_student(int id) {
 	throw "student_id does not exist";
 }
 
+int Teacher::get_student_level(Student& student) {
+	return get_entry<int>(student.get_id(), "student", "level");
+}
+
+double Teacher::get_student_gpa(Student& student) {
+	return get_entry<double>(student.get_id(), "student", "gpa");
+}
+
 // SETTERS
+void Teacher::set_dob(string dob) {
+	this->dob = dob;
+}
+
+void Teacher::set_email(string email) {
+	this->email = email;
+}
+
+void Teacher::set_firstname(string first_name) {
+	this->first_name = first_name;
+}
+
+void Teacher::set_surname(string surname) {
+	this->surname = surname;
+}
+
+int Teacher::new_id() {
+	return 0;
+}
+
+// OTHERS
+bool Teacher::add_teacher(Teacher& teacher) {
+	return false;
+}

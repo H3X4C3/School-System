@@ -15,7 +15,7 @@ Admin::Admin(string first_name, string surname, string dob, string email) : Pers
 Admin::Admin(string first_name, string surname, string dob, string email, int id) : Person(first_name, surname) {
 	this->dob = dob;
 	this->email = email;
-	this->id = id;
+	this->admin_id = id;
 }
 
 // GETTERS
@@ -70,7 +70,7 @@ string Admin::get_email() {
 }
 
 int Admin::get_id() {
-	return this->id;
+	return this->admin_id;
 }
 
 // SETTERS
