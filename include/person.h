@@ -11,9 +11,9 @@ public:
 	Person() {};
 	Person(string first_name, string surname);
 
-	string get_first_name();
+	string get_firstname();
 	string get_surname();
 
-	void set_first_name(string name);
+	void set_firstname(string name);
 	void set_surname(string name);
 };

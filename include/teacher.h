@@ -21,6 +21,7 @@ public:
 	Teacher() {};
 	Teacher(string first_name, string surname, string dob, string email);
 	Teacher(string first_name, string surname, string dob, string email, int id);
+	~Teacher() {};
 
 	// GETTERS
 	string get_name();
@@ -29,9 +30,18 @@ public:
 	string get_dob();
 	string get_email();
 	int get_id();
-	Student get_student_obj(int id);
-	string get_student_name(Student student);
-	double get_student_gpa(Student student);
-	string get_student_email(Student student);
 	int get_student_level(Student student);
+	double get_student_gpa(Student student);
+	vector<Teacher> get_teacher_list();
+	Student get_student(int id);
+
+	// SETTERS
+	void set_firstname(string first_name);
+	void set_surname(string surname);
+	void set_dob(string dob);
+	void set_email(string email);
+	int new_id();
+
+	// OTHERS
+	bool add_teacher(Teacher teacher);
 };

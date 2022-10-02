@@ -9,7 +9,7 @@ Person::Person(string first_name, string surname) {
 }
 
 // GETTERS
-string Person::get_first_name() {
+string Person::get_firstname() {
 	return this->first_name;
 }
 
@@ -18,7 +18,7 @@ string Person::get_surname() {
 }
 
 // SETTERS
-void Person::set_first_name(string name) {
+void Person::set_firstname(string name) {
 	this->first_name = name;
 }
 

@@ -20,7 +20,7 @@ void insert_to_table(Person* person, string table) {
 		statement = con->prepareStatement("INSERT INTO " + table + "(id, first_name, surname, DOB, email) VALUES(?, ?, ?, ?, ?);");
 		// Set values to db
 		statement->setInt(1, static_cast<Admin*>(person)->get_id());
-		statement->setString(2, person->get_first_name());
+		statement->setString(2, person->get_firstname());
 		statement->setString(3, person->get_surname());
 		statement->setString(4, static_cast<Admin*>(person)->get_dob());
 		statement->setString(5, static_cast<Admin*>(person)->get_email());
@@ -33,7 +33,7 @@ void insert_to_table(Person* person, string table) {
 		statement = con->prepareStatement("INSERT INTO " + table + "(id, first_name, surname, DOB, email) VALUES(?, ?, ?, ?, ?);");
 		// Set values to db
 		statement->setInt(1, static_cast<Teacher*>(person)->get_id());
-		statement->setString(2, person->get_first_name());
+		statement->setString(2, person->get_firstname());
 		statement->setString(3, person->get_surname());
 		statement->setString(4, static_cast<Teacher*>(person)->get_dob());
 		statement->setString(5, static_cast<Teacher*>(person)->get_email());
@@ -46,7 +46,7 @@ void insert_to_table(Person* person, string table) {
 	statement = con->prepareStatement("INSERT INTO " + table + "(id, first_name, surname, DOB, gpa, level) VALUES(?, ?, ?, ?, ?, ?);");
 	// Set values to db
 	statement->setInt(1, static_cast<Student*>(person)->get_id());
-	statement->setString(2, person->get_first_name());
+	statement->setString(2, person->get_firstname());
 	statement->setString(3, person->get_surname());
 	statement->setString(4, static_cast<Student*>(person)->get_dob());
 	statement->setDouble(5, static_cast<Student*>(person)->get_gpa());
