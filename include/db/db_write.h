@@ -14,6 +14,11 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 
+sql::PreparedStatement* statement;
+sql::ResultSet* result;
+sql::Driver* driver;
+sql::Connection* con;
+
 void insert_to_table(Person* person, string table) {
 	transform(table.begin(), table.end(), table.begin(), tolower);
 

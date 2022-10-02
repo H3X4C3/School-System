@@ -87,5 +87,10 @@ int Teacher::new_id() {
 
 // OTHERS
 bool Teacher::add_teacher(Teacher& teacher) {
-	return false;
+	for (Teacher& elem : teacher_list) {
+		if (elem.get_id() == teacher.get_id()) return false;
+	}
+
+	teacher_list.push_back(teacher);
+	return true;
 }
