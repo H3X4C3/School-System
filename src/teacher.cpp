@@ -1,10 +1,8 @@
 #include "teacher.h"
 #include "person.h"
 #include "db/db_read.h"
-//#include "db/db_write.h"
 
 #include <string>
-#include <vector>
 using namespace std;
 
 Teacher::Teacher(string first_name, string surname, string dob, string email) : Person(first_name, surname) {
@@ -82,7 +80,13 @@ void Teacher::set_surname(string surname) {
 }
 
 int Teacher::new_id() {
-	return 0;
+	int id;
+	sort(id_list.begin(), id_list.end());
+	if (id_list.empty()) return id = 1; // check if id_list is empty
+
+	// if not, increment the last element of vector and return
+	id = id_list.back();
+	return id++;
 }
 
 // OTHERS
@@ -93,4 +97,8 @@ bool Teacher::add_teacher(Teacher& teacher) {
 
 	teacher_list.push_back(teacher);
 	return true;
+}
+
+void Teacher::add_id(int id) {
+	id_list.push_back(id);
 }

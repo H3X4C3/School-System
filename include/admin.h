@@ -44,7 +44,11 @@ public:
 	void set_dob(string dob);
 
 	// OTHER
-	bool add_admin(Admin admin);
+	bool add_admin(Admin& admin);
+	bool remove_student(Student& student);
+	bool remove_teacher(Teacher& teacher);
+	bool remove_admin(Admin& admin);
+	void add_id(int id);
 	void print_admins();
 	void print_teachers();
 	void print_students();

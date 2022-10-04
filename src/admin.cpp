@@ -2,8 +2,10 @@
 #include "person.h"
 #include "teacher.h"
 #include "student.h"
+#include "db/db_read.h"
 
 #include <string>
+#include <algorithm>
 #include <ctime>
 using namespace std;
 
@@ -91,17 +93,71 @@ void Admin::set_email(string email) {
 }
 
 int Admin::new_id() {
-	return 0;
+	int id;
+	sort(id_list.begin(), id_list.end());
+	if (id_list.empty()) return id = 1; // check if id_list is empty
+
+	// if not, increment the last element of vector and return
+	id = id_list.back();
+	return id++;
 }
 
 // OTHERS
-bool Admin::add_admin(Admin admin) {
+bool Admin::add_admin(Admin& admin) {
 	for (Admin& elem : admin_list) {
-		if (!(elem.get_id() == admin.get_id())) {
-			admin_list.push_back(admin);
+		if (elem.get_id() == admin.get_id()) return false;
+	}
+	admin_list.push_back(admin);
+	return true;
+}
+
+void Admin::add_id(int id) {
+	id_list.push_back(id);
+}
+
+bool Admin::remove_admin(Admin& admin) {
+	for (Admin& elem : admin_list) {
+		if (elem.get_id() == admin.get_id()) {
+			admin_list.erase(find(admin_list.begin(), admin_list.end(), elem)); // find elem and remove it from vector
 			return true;
 		}
 	}
 
 	return false;
+}
+
+bool Admin::remove_teacher(Teacher& teacher) {
+	vector<Teacher> vtr = teacher.get_teacher_list();
+	for (Teacher& elem : vtr) {
+		if (elem.get_id() == teacher.get_id()) {
+			vtr.erase(find(vtr.begin(), vtr.end(), elem));
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Admin::remove_student(Student& student) {
+	vector<Student> vtr = student.get_student_list();
+	for (Student& elem : vtr) {
+		if (elem.get_id() == student.get_id()) {
+			vtr.erase(find(vtr.begin(), vtr.end(), elem));
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Admin::print_admins() {
+	print_table("administrator");
+}
+
+void Admin::print_teachers() {
+	print_table("teacher");
+}
+
+void Admin::print_students() {
+	print_table("student");
 }

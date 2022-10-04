@@ -44,4 +44,5 @@ public:
 
 	// OTHERS
 	bool add_teacher(Teacher& teacher);
+	void add_id(int id);
 };

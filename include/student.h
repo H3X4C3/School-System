@@ -31,6 +31,7 @@ public:
 	string get_surname();
 	string get_name();
 	vector<Student> get_student_list();
+	vector<int> get_id_list();
 
 	// SETTERS
 	void set_gpa(int gpa);
@@ -41,5 +42,6 @@ public:
 	void set_surname(string surname);
 
 	// OTHERS
-	bool add_student(Student student);
+	bool add_student(Student& student);
+	void add_id(int id);
 };
